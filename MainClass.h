@@ -10,11 +10,11 @@
 #include <wx/wx.h>
 #endif
 
-class MainWindow : public wxApp{
+class MainClass : public wxApp{
 
 public:
-    MainWindow();
-    ~MainWindow();
+    MainClass();
+    ~MainClass();
     virtual bool OnInit();
 private:
 
