@@ -3,7 +3,7 @@
 //
 
 #include "MainClass.h"
-#include "Frame.h"
+
 
 MainClass::MainClass(){
 	std::cout << "instatiate\n";
@@ -14,7 +14,7 @@ MainClass::~MainClass(){
 }
 bool MainClass::OnInit() {
 	std::cout << "Create frame\n";
-	Frame *frame = new Frame( "TicTacToe", wxPoint(50, 50), wxSize(450, 340) );
-	frame->Show( true );
+	p_MainWindow = new MainWindow("TicTacToe", wxPoint(50, 50), wxSize(450, 340) );
+	p_MainWindow->Show( true );
 	return true;
 }
