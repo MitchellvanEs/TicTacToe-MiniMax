@@ -6,15 +6,15 @@
 #include "Frame.h"
 
 MainClass::MainClass(){
-    std::cout << "instatiate\n";
+	std::cout << "instatiate\n";
 }
 
 MainClass::~MainClass(){
-    std::cout << "destroy\n";
+	std::cout << "destroy\n";
 }
 bool MainClass::OnInit() {
-    std::cout << "Create frame\n";
-    Frame *frame = new Frame( "TicTacToe", wxPoint(50, 50), wxSize(450, 340) );
-    frame->Show( true );
-    return true;
+	std::cout << "Create frame\n";
+	Frame *frame = new Frame( "TicTacToe", wxPoint(50, 50), wxSize(450, 340) );
+	frame->Show( true );
+	return true;
 }

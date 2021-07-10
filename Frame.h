@@ -12,7 +12,7 @@
 
 class Frame : public wxFrame {
 public:
-    Frame(const wxString& title, const wxPoint& pos, const wxSize& size);
+	Frame(const wxString& title, const wxPoint& pos, const wxSize& size);
 };
 
 #endif //FRAME_H

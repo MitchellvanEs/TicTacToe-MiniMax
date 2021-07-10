@@ -13,9 +13,9 @@
 class MainClass : public wxApp{
 
 public:
-    MainClass();
-    ~MainClass();
-    virtual bool OnInit();
+	MainClass();
+	~MainClass();
+	virtual bool OnInit();
 private:
 
 protected:
