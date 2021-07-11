@@ -16,10 +16,6 @@ MainClass::~MainClass(){
 bool MainClass::OnInit() {
 	std::cout << "Create frame\n";
 	p_MainWindow = new MainWindow("TicTacToe", wxPoint(1400, 50), wxSize(225, 250) );
-	p_GameHandler = new GameHandler();
-
-	p_MainWindow->setItsGameHandler(p_GameHandler);
-
 	p_MainWindow->Show( true );
 	return true;
 }

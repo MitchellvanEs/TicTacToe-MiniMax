@@ -22,7 +22,7 @@ public:
 	GameHandler* getItsGameHandler();
 
 	void updateGrid();
-
+	void updateUI();
 private:
 	GameHandler* itsGameHandler = NULL;
 
@@ -30,11 +30,14 @@ private:
 	wxButton* btnPlayer1;
 	wxButton* btnPlayer2;
 	wxButton* btnStart;
-	wxButton* btnRestart;
+	wxButton* btnReset;
 	wxButton* btnCells[9];
 
 	void playerToggle(wxCommandEvent & event);
 	void cellSelect(wxCommandEvent &event);
+	void startGame(wxCommandEvent & event);
+	void resetGame(wxCommandEvent &event);
+
 };
 
 #endif //MAINWINDOW_H
