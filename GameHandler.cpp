@@ -24,10 +24,6 @@ void GameHandler::__setItsMainWindow(MainWindow *p_MainWindow) {
 	itsMainWindow = p_MainWindow;
 }
 
-MainWindow *GameHandler::getItsMainWindow() {
-	return itsMainWindow;
-}
-
 GameHandler::GameHandler() {
 	GameHandler::resetGame();
 }
@@ -36,6 +32,10 @@ void GameHandler::startGame() {
 	if(state == init){
 		state = player1;
 		itsMainWindow->updateUI();
+
+		if(itsAI[0] != NULL){
+			GameHandler::setCell(itsAI[0]->generateMove());
+		}
 	}
 }
 
@@ -67,16 +67,36 @@ bool GameHandler::isAI(int i) {
 }
 
 void GameHandler::setCell(int i) {
-	if(state == player1 || state == player2){
-		cells[i] = state == player1 ? 1 : -1;
-		itsMainWindow->updateGrid();
+	if (cells[i] == 0){
+		if (state == player1 || state == player2) {
+			cells[i] = state == player1 ? 1 : -1;
+			itsMainWindow->updateGrid();
 
-		if(checkGrid()){
-			state = state == player1 ? player1win : player2win;
-		}else {
-			state = state == player1 ? player2 : player1;
+			switch (checkGrid()) {
+				case none:
+					state = state == player1 ? player2 : player1;
+					break;
+				case full:
+					state = draw;
+					break;
+				case p1win:
+					state = player1win;
+					break;
+				case p2win:
+					state = player2win;
+					break;
+			}
+
+			itsMainWindow->updateUI();
+
+			if(state == player1 && itsAI[0] != NULL){
+				GameHandler::setCell(itsAI[0]->generateMove());
+			}
+
+			if(state == player2 && itsAI[1] != NULL){
+				GameHandler::setCell(itsAI[1]->generateMove());
+			}
 		}
-		itsMainWindow->updateUI();
 	}
 }
 
@@ -84,29 +104,43 @@ int GameHandler::getCell(int i) {
 	return cells[i];
 }
 
-GameHandler::States GameHandler::getState() {
+int* GameHandler::getCells() {
+	return cells;
+}
+
+GameHandler::GameStates GameHandler::getState() {
 	return state;
 }
 
-bool GameHandler::checkGrid() {
+GameHandler::GridStates GameHandler::checkGrid() {
+	int i;
+	for(i = 0; i<9;i++){
+		if(cells[i] == 0){
+			break;
+		}
+	}
+	if(i == 9){
+		return full;
+	}
+
 	for(int i = 0; i < 3; i++){
 		if(abs(cells[3 * i] + cells[3 * i + 1] + cells[3 * i + 2]) == 3){
-			return true;
+			return cells[3 * i] == 1 ? p1win : p2win;
 		}
 
 		if(abs(cells[i] + cells[i + 3] + cells[i + 6]) == 3){
-			return true;
+			return cells[i] == 1 ? p1win : p2win;
 		}
 	}
 
 	if(abs(cells[0] + cells[4] + cells[8]) == 3){
-		return true;
+		return cells[0] == 1 ? p1win : p2win;
 	}
 	if(abs(cells[2] + cells[4] + cells[6]) == 3){
-		return true;
+		return cells[2] == 1  ? p1win : p2win;
 	}
 
-	return false;
+	return none;
 }
 
 void GameHandler::removeItsAI(AI *p_AI) {

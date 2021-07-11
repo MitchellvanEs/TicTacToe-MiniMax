@@ -13,6 +13,7 @@ public:
 	~AI();
 
 	void setItsGameHandler(GameHandler* p_GameHandler);
+	int generateMove();
 
 private:
 	GameHandler* itsGameHandler;

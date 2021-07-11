@@ -17,4 +17,15 @@ void AI::setItsGameHandler(GameHandler *p_GameHandler) {
 	itsGameHandler = p_GameHandler;
 }
 
+int AI::generateMove() {
+	int* grid = itsGameHandler->getCells();
+
+	int i = rand() % 9;
+	while(grid[i] != 0){
+		i = rand() % 9;
+	}
+
+	return i;
+}
+
 

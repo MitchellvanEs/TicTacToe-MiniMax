@@ -119,6 +119,12 @@ void MainWindow::updateUI(){
 
 			lblState->SetLabel(itsGameHandler->getState() == GameHandler::player1win ? "Player 1 won" : "Player 2 won");
 			break;
+		case GameHandler::draw:
+			btnStart->Enable(false);
+			btnPlayer1->Enable(false);
+			btnPlayer2->Enable(false);
+
+			lblState->SetLabel("Draw");
 	}
 }
 

@@ -15,7 +15,8 @@ class AI;
 
 class GameHandler {
 public:
-	enum States {init, player1, player2, player1win, player2win};
+	enum GameStates {init, player1, player2, player1win, player2win, draw};
+	enum GridStates {none, full, p1win, p2win};
 	GameHandler();
 
 	void setItsMainWindow(MainWindow* p_MainWindow);
@@ -24,25 +25,24 @@ public:
 
 	void removeItsAI(AI* p_AI);
 
-	MainWindow* getItsMainWindow();
-
 	void setCell(int i);
 	int getCell(int i);
-	bool checkGrid();
+	GridStates checkGrid();
+	int* getCells();
 
 	void startGame();
 	void resetGame();
 	void togglePlayerType(int i);
 	bool isAI(int i);
 
-	States getState();
+	GameStates getState();
 
 private:
 	MainWindow* itsMainWindow = NULL;
 	AI* itsAI[2] = {NULL, NULL};
 
 	int cells[9];
-	States state;
+	GameStates state;
 };
 
 

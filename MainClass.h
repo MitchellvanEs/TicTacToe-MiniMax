@@ -22,7 +22,6 @@ public:
 
 private:
 	MainWindow *p_MainWindow;
-	GameHandler *p_GameHandler;
 protected:
 
 };
