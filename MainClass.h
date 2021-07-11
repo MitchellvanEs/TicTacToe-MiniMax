@@ -10,7 +10,8 @@
 #include <wx/wx.h>
 #endif
 
-#include "MainWindow.h"
+class MainWindow;
+class GameHandler;
 
 class MainClass : public wxApp{
 
@@ -21,6 +22,7 @@ public:
 
 private:
 	MainWindow *p_MainWindow;
+	GameHandler *p_GameHandler;
 protected:
 
 };

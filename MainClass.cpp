@@ -3,7 +3,8 @@
 //
 
 #include "MainClass.h"
-
+#include "MainWindow.h"
+#include "GameHandler.h"
 
 MainClass::MainClass(){
 	std::cout << "instatiate\n";
@@ -14,7 +15,11 @@ MainClass::~MainClass(){
 }
 bool MainClass::OnInit() {
 	std::cout << "Create frame\n";
-	p_MainWindow = new MainWindow("TicTacToe", wxPoint(50, 50), wxSize(450, 340) );
+	p_MainWindow = new MainWindow("TicTacToe", wxPoint(1400, 50), wxSize(225, 250) );
+	p_GameHandler = new GameHandler();
+
+	p_MainWindow->setItsGameHandler(p_GameHandler);
+
 	p_MainWindow->Show( true );
 	return true;
 }
