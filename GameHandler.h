@@ -27,7 +27,7 @@ public:
 
 	void setCell(int i);
 	int getCell(int i);
-	GridStates checkGrid();
+	GridStates checkGrid(int* grid = NULL) ;
 	int* getCells();
 
 	void startGame();

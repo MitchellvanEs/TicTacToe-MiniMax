@@ -112,10 +112,14 @@ GameHandler::GameStates GameHandler::getState() {
 	return state;
 }
 
-GameHandler::GridStates GameHandler::checkGrid() {
+GameHandler::GridStates GameHandler::checkGrid(int* grid) {
+	if(grid == NULL){
+		grid = cells;
+	}
+
 	int i;
 	for(i = 0; i<9;i++){
-		if(cells[i] == 0){
+		if(grid[i] == 0){
 			break;
 		}
 	}
@@ -124,20 +128,20 @@ GameHandler::GridStates GameHandler::checkGrid() {
 	}
 
 	for(int i = 0; i < 3; i++){
-		if(abs(cells[3 * i] + cells[3 * i + 1] + cells[3 * i + 2]) == 3){
-			return cells[3 * i] == 1 ? p1win : p2win;
+		if(abs(grid[3 * i] + grid[3 * i + 1] + grid[3 * i + 2]) == 3){
+			return grid[3 * i] == 1 ? p1win : p2win;
 		}
 
-		if(abs(cells[i] + cells[i + 3] + cells[i + 6]) == 3){
-			return cells[i] == 1 ? p1win : p2win;
+		if(abs(grid[i] + grid[i + 3] + grid[i + 6]) == 3){
+			return grid[i] == 1 ? p1win : p2win;
 		}
 	}
 
-	if(abs(cells[0] + cells[4] + cells[8]) == 3){
-		return cells[0] == 1 ? p1win : p2win;
+	if(abs(grid[0] + grid[4] + grid[8]) == 3){
+		return grid[0] == 1 ? p1win : p2win;
 	}
-	if(abs(cells[2] + cells[4] + cells[6]) == 3){
-		return cells[2] == 1  ? p1win : p2win;
+	if(abs(grid[2] + grid[4] + grid[6]) == 3){
+		return grid[2] == 1  ? p1win : p2win;
 	}
 
 	return none;
