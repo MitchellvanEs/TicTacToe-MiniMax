@@ -8,5 +8,5 @@ set(wxWidgets_CONFIGURATION mswu)
 find_package(wxWidgets COMPONENTS core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
-add_executable(TicTacToe main.cpp MainClass.cpp MainClass.h MainWindow.cpp MainWindow.h GameHandler.cpp GameHandler.h AI.cpp AI.h)
+add_executable(TicTacToe main.cpp MainClass.cpp MainClass.h MainWindow.cpp MainWindow.h GameHandler.cpp GameHandler.h AI.cpp AI.h MiniMax.cpp MiniMax.h)
 target_link_libraries(TicTacToe ${wxWidgets_LIBRARIES})

@@ -5,6 +5,8 @@
 #ifndef AI_H
 #define AI_H
 
+#include "MiniMax.h"
+
 class GameHandler;
 
 class AI {
@@ -18,6 +20,7 @@ public:
 private:
 	GameHandler* itsGameHandler;
 	int instance;
+	MiniMax* head;
 };
 
 
