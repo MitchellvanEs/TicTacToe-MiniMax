@@ -37,9 +37,9 @@ MiniMax::MiniMax(GameHandler* gameHandler, MiniMax* parent, int selectedCell) {
 		case GameHandler::p1win:
 		case GameHandler::p2win:
 			if(myTurn){
-				itsScore = 1;
+				itsScore = 1*(10-itsDepth);
 			}else{
-				itsScore = -1;
+				itsScore = -1*(10-itsDepth);
 			}
 			break;
 	}
