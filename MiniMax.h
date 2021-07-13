@@ -8,15 +8,25 @@
 #include "GameHandler.h"
 
 class MiniMax {
-	int depth;
+public :
+	MiniMax(GameHandler* gameHandler, MiniMax* parent, int selectedCell = -1);
 
-	int grid[9];
-	GameHandler::GridStates state;
-	int selectedCell = -1;
 
-	bool isMe;
+	GameHandler* itsGameHandler;
 
-	MiniMax* child[9];
+	int itsDepth;
+
+	int itsGrid[9];
+
+
+	GameHandler::GridStates itsState;
+	int itsSelectedCell = -1;
+	int itsScore = 0;
+	int itsCumScore = 0;
+	bool myTurn = false;
+
+	MiniMax* itsParent;
+	MiniMax* itsChildren[9] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 };
 
 

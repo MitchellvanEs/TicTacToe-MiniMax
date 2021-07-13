@@ -11,16 +11,17 @@ class GameHandler;
 
 class AI {
 public:
-	AI(int instance);
+	AI();
 	~AI();
 
 	void setItsGameHandler(GameHandler* p_GameHandler);
 	int generateMove();
 
 private:
-	GameHandler* itsGameHandler;
-	int instance;
-	MiniMax* head;
+	GameHandler* itsGameHandler = NULL;
+	MiniMax* minimaxHead = NULL;
+
+	void debugMiniMax(MiniMax* parent);
 };
 
 

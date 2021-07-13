@@ -54,7 +54,7 @@ void GameHandler::resetGame() {
 
 void GameHandler::togglePlayerType(int i) {
 	if(itsAI[i] == NULL){
-		itsAI[i] = new AI(i);
+		itsAI[i] = new AI();
 		itsAI[i]->setItsGameHandler(this);
 	}else{
 		delete itsAI[i];
