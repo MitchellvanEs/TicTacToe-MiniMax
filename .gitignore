@@ -1,2 +1,5 @@
 .idea/*
 cmake-build-debug/*
+*.entitlements
+*.plist
+*.DS_Store
