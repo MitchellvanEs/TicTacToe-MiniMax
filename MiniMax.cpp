@@ -4,56 +4,41 @@
 
 #include "MiniMax.h"
 
-MiniMax::MiniMax(GameHandler* gameHandler, MiniMax* parent, int selectedCell) {
-	itsGameHandler = gameHandler;
+MiniMax::MiniMax(MiniMax* parent, int selectedCell, GameHandler* gameHandler, int player) {
 	itsParent = parent;
 
-	if(parent != NULL){
+	if(itsParent != NULL){
+        itsGameHandler = itsParent->itsGameHandler;
 		itsDepth = itsParent->itsDepth + 1;
 		itsSelectedCell = selectedCell;
-
+        itsPlayer = itsParent->itsPlayer;
+        
 		for(int i = 0; i<9; i++) {
 			itsGrid[i] = itsParent->itsGrid[i];
 		}
 
-		itsGrid[itsSelectedCell] = 1;
+		itsGrid[itsSelectedCell] = player ? -1 : 1;
 
-		myTurn = !parent->myTurn;
-	}else{
-		itsDepth = 0;
+        itsTurn = !itsParent->itsTurn;
+    }else{      
+        itsGameHandler = gameHandler;
+        itsDepth = 0;
+        itsPlayer = player;
+        
+        for(int i = 0; i<9; i++) {
+            itsGrid[i] = itsGameHandler->getCell(i);
+        }
 
-		for(int i = 0; i<9; i++) {
-			itsGrid[i] = itsGameHandler->getCell(i);
-		}
-	}
-
-	itsState = itsGameHandler->checkGrid(itsGrid);
-
-	switch (itsState) {
-		case GameHandler::none:
-		case GameHandler::full:
-			itsScore = 0;
-			break;
-		case GameHandler::p1win:
-		case GameHandler::p2win:
-			if(myTurn){
-				itsScore = 1*(10-itsDepth);
-			}else{
-				itsScore = -1*(10-itsDepth);
-			}
-			break;
-	}
-
+        itsTurn = true;
+    }
+    
+    itsState = itsGameHandler->checkGrid(itsGrid);;
+    
 	if(itsDepth < 1){
 		for(int i = 0; i<9; i++){
-			if(itsGrid[i] == 0 && itsScore == 0) {
-				itsChildren[i] = new MiniMax(itsGameHandler, this, i);
+			if(itsGrid[i] == 0) {
+				itsChildren[i] = new MiniMax(this, i);
 			}
 		}
 	}
-
-	if(parent != NULL){
-		parent->itsCumScore += itsScore + itsCumScore;
-	}
-
 }

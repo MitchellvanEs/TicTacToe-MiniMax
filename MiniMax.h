@@ -9,22 +9,22 @@
 
 class MiniMax {
 public :
-	MiniMax(GameHandler* gameHandler, MiniMax* parent, int selectedCell = -1);
+	MiniMax(MiniMax* parent, int selectedCell = -1, GameHandler* gameHandler = NULL, int player = -1);
 
-
+private:
 	GameHandler* itsGameHandler;
 
 	int itsDepth;
-
 	int itsGrid[9];
 
-
-	GameHandler::GridStates itsState;
+    GameHandler::GridStates itsState = GameHandler::none;
 	int itsSelectedCell = -1;
+    bool itsTurn = false;
+    int itsPlayer = 0;
+    
 	int itsScore = 0;
 	int itsCumScore = 0;
-	bool myTurn = false;
-
+	
 	MiniMax* itsParent;
 	MiniMax* itsChildren[9] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 };

@@ -11,7 +11,7 @@ class GameHandler;
 
 class AI {
 public:
-	AI();
+	AI(int player);
 	~AI();
 
 	void setItsGameHandler(GameHandler* p_GameHandler);
@@ -20,8 +20,7 @@ public:
 private:
 	GameHandler* itsGameHandler = NULL;
 	MiniMax* minimaxHead = NULL;
-
-	void debugMiniMax(MiniMax* parent);
+    int itsPlayer;
 };
 
 
